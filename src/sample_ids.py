@@ -21,8 +21,12 @@ def main():
         ids = fname.read().split()
     np.random.seed(args["seed"])
     idxs = np.random.choice(len(ids) + 1, args["nsize"], replace=False)
+    
+    
+    ids_out = list()
+    for idx in idxs: ids_out.append(ids[idx])
     outname = re.sub(".txt", "_n{}.txt".format(args["nsize"]), args["data"])
-    np.savetxt(outname, idxs, fmt="%i", newline="\n")
+    np.savetxt(outname, ids_out, fmt="%s"   , newline="\n")
 
 if __name__=="__main__":
     main()
